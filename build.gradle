@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:${assetPluginVersion}"
+    }
+}
+
+plugins {
+    id "org.springframework.boot" version "${springBootVersion}"
+}
+
+group "jobsecurityaudit"
+
+apply plugin:"eclipse"
+apply plugin:"idea"
+apply plugin:"org.grails.grails-plugin"
+apply plugin:"asset-pipeline"
+apply plugin:"org.grails.grails-gsp"
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+apply from: "../gradle/java-version.gradle"
+
+dependencies {
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation "org.springframework.boot:spring-boot-starter-log4j2"
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+    implementation("org.grails:grails-core") {
+        exclude(group:"org.yaml",module:"snakeyaml")
+    }
+    implementation "org.grails:grails-web-boot"
+    implementation "org.grails:grails-logging"
+    implementation "org.grails:grails-plugin-rest"
+    implementation "org.grails:grails-plugin-databinding"
+    implementation "org.grails:grails-plugin-i18n"
+    implementation "org.grails:grails-plugin-services"
+    implementation "org.grails:grails-plugin-url-mappings"
+    implementation "org.grails:grails-plugin-interceptors"
+    implementation "org.grails.plugins:async"
+    implementation "org.grails.plugins:scaffolding"
+    implementation "org.grails.plugins:gsp"
+    implementation "io.micronaut:micronaut-inject-groovy"
+    console "org.grails:grails-console"
+
+    implementation project(":core")
+    implementation project(':rundeck-app-util')
+    implementation project(':grails-rundeck-data-shared')
+
+    implementation "org.yaml:snakeyaml:${snakeyamlVersion}"
+    compileOnly "org.grails:grails-plugin-domain-class"
+    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:$assetPluginVersion"
+    testImplementation "org.grails:grails-gorm-testing-support"
+    testImplementation "org.grails:grails-web-testing-support"
+    testImplementation "org.mockito:mockito-core"
+
+    constraints {
+        implementation("commons-fileupload:commons-fileupload:${commonsFileuploadVersion}") {
+            because "Fix CVE-2025-48976 - force newer version over transitive dependencies"
+        }
+    }
+}
+
+bootJar.enabled = false
+bootRun.enabled = false
+
+gradle.beforeProject {
+    file("grails-app/assets").mkdir()
+}
+
+assets {
+    packagePlugin = true
+}
