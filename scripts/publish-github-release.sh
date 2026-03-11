@@ -41,12 +41,16 @@ if ! curl -fsS -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: applicatio
   exit 1
 fi
 
-REL_BODY=$(python3 - <<PY
-import json, pathlib
-notes = pathlib.Path(${NOTES_FILE@Q}).read_text()
+export NOTES_FILE TAG RELEASE_NAME
+REL_BODY=$(python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+notes = Path(os.environ["NOTES_FILE"]).read_text()
 print(json.dumps({
-  "tag_name": ${TAG@Q},
-  "name": ${RELEASE_NAME@Q},
+  "tag_name": os.environ["TAG"],
+  "name": os.environ["RELEASE_NAME"],
   "body": notes,
   "draft": False,
   "prerelease": False,
