@@ -45,6 +45,14 @@ The plugin provides:
 
 ![Security & Compliance scan page](./docs/images/security-compliance-audit-page.png)
 
+### Scan results with real findings
+
+![Security scan results with findings](./docs/images/security-scan-results.png)
+
+### AI report preview
+
+![AI report preview](./docs/images/ai-report-preview.png)
+
 ### Project configuration tabs
 
 ![Security & Compliance and AI Connection tabs](./docs/images/security-compliance-config-tabs.png)
@@ -199,6 +207,7 @@ plugin-security-compliance-audit/
 
 ## Release Notes
 
+- [v1.0.1](./docs/release-notes-v1.0.1.md)
 - [v1.0.0](./docs/release-notes-v1.0.0.md)
 
 ## Support
