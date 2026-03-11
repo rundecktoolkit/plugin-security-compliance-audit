@@ -39,6 +39,16 @@ The plugin provides:
 - AI-enriched report generation with preview and download
 - provider-aware AI connection settings for OpenAI, Anthropic, Google AI, and custom endpoints
 
+## Screenshots
+
+### Security & Compliance scan page
+
+![Security & Compliance scan page](./docs/images/security-compliance-audit-page.png)
+
+### Project configuration tabs
+
+![Security & Compliance and AI Connection tabs](./docs/images/security-compliance-config-tabs.png)
+
 ## Features
 
 - Left navigation entry: `Security & Compliance`
