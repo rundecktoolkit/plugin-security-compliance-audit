@@ -49,6 +49,18 @@ The plugin provides:
 
 ![Security & Compliance and AI Connection tabs](./docs/images/security-compliance-config-tabs.png)
 
+### Security & Compliance settings
+
+![Security & Compliance settings](./docs/images/security-compliance-settings.png)
+
+### Security rule controls and severity overrides
+
+![Security rule controls and severity overrides](./docs/images/security-rule-controls.png)
+
+### AI Connection settings
+
+![AI Connection settings](./docs/images/ai-connection-settings.png)
+
 ## Features
 
 - Left navigation entry: `Security & Compliance`
